@@ -4,40 +4,39 @@ import random
 # Call emoji picker:  Windows key + . or Windows key + ; to open on Windows. 
 # On Mac, use Control + Command + Space.
 
-ROCK = 'r'
-PAPER = 'p'
-SCISSORS = 's'
-emojis = {ROCK: '🪨', PAPER: '📄', SCISSORS: '✂️'}
-choices = tuple(emojis.keys())  # (ROCK, PAPER, SCISSORS)
+emojis = {
+    "r": "🪨",  # Rock
+    "p": "📃",  # Paper
+    "s": "✂️"   # Scissors
+}
+choices = ("r", "p", "s")
 
 def get_user_choice():
-    """Prompt the user for their choice and validate it."""
-    print("Welcome to Rock, Paper, Scissors!")
     while True:
-        user_choice = input('Rock, paper, or scissors? (r, p, s): ').lower()
+        user_choice = input("Enter your choice (rock, paper, scissors): ").lower()
         if user_choice in choices:
             return user_choice
         else:
-            print('Invalid choice! Please choose r, p, or s.')
+            print("Invalid choice! Please choose rock, paper, or scissors.")
 
 def display_choices(user_choice, computer_choice):
-    """Display the choices made by the user and the computer."""
-    print(f"You chose: {emojis[user_choice]}")
-    print(f"Computer chose: {emojis[computer_choice]}")
+    print(f'You chose {emojis[user_choice]}')
+    print(f'Computer chose {emojis[computer_choice]}')
 
 def determine_winner(user_choice, computer_choice):
-    """Determine the winner based on the choices."""
     if user_choice == computer_choice:
-        return "It's a tie!"
-    elif (
-        (user_choice == ROCK and computer_choice == SCISSORS) or
-        (user_choice == PAPER and computer_choice == ROCK) or
-        (user_choice == SCISSORS and computer_choice == PAPER)):
-        return "You win! 🙂"
+        print("It's a tie!")
+    elif(
+        (user_choice == "r" and computer_choice == "s") or 
+        (user_choice == "s" and computer_choice == "p") or 
+        (user_choice == "p" and computer_choice == "r")):
+        #print(f'Computer chose {emojis[computer_choice]}')
+        print("You win!")
     else:
-        return "You lose! 🙁"
+        #print(f'Computer chose {emojis[computer_choice]}')
+        print("You lose!")
 
-def play_game():
+def play_game() :
     while True:
         user_choice = get_user_choice()
 
@@ -45,15 +44,10 @@ def play_game():
 
         display_choices(user_choice, computer_choice)
 
-        result = determine_winner(user_choice, computer_choice)
-        print(result)
+        determine_winner(user_choice, computer_choice)
 
-        should_continue = input("Do you want to play again? (y/n): ").lower()
-        if should_continue == 'y':
-            print("Let's play again!")
-        else:
-            print("Thanks for playing!")
+        should_continue = input('Continue? (y/n): ').lower()
+        if should_continue == 'n':
             break
 
 play_game()
-        
