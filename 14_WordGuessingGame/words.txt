@@ -1,0 +1,11 @@
+elephant
+giraffe
+python
+shark
+fish
+jazz
+astronaut
+airplane
+dance
+kitchen
+bathroom
